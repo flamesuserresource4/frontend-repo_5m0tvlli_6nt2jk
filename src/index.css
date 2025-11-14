@@ -15,11 +15,25 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    background: #0A0A0A;
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased text-white bg-[#0A0A0A];
   }
+}
+
+/* Ambient utility animations */
+@keyframes wave-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(1200px); }
+}
+
+@keyframes particle-move {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(110%); opacity: 0; }
 }
 
 /* Custom utility classes for shadcn/ui patterns */

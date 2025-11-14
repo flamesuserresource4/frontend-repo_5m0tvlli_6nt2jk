@@ -1,6 +1,7 @@
 import React from 'react'
-import { ArrowRight, Shield, Cpu, Waves, Sparkles, Headphones, Car, Video, Globe } from 'lucide-react'
+import { ArrowRight, Shield, Cpu, Waves, Sparkles, Headphones, Car, Video, Globe, CpuIcon } from 'lucide-react'
 import Spline from '@splinetool/react-spline'
+import Wavefield from './Wavefield'
 
 function NavBar() {
   return (
@@ -31,17 +32,22 @@ function Hero() {
   return (
     <section className="relative min-h-[92vh] w-full overflow-hidden bg-[#0A0A0A]">
       {/* Spline 3D background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-0">
         <Spline scene="https://prod.spline.design/cEecEwR6Ehj4iT8T/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
+      {/* Dynamic wavefield overlay */}
+      <div className="absolute inset-0 z-[1]">
+        <Wavefield />
+      </div>
+
       {/* Top gradient glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,106,0,0.25),transparent_60%)]"></div>
+      <div className="pointer-events-none absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_top,rgba(255,106,0,0.22),transparent_55%)]"></div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-36 pb-28 flex flex-col items-start">
-        <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/70 mb-6">
-          <Sparkles size={14} className="text-[#FF8C32]" /> AI-Powered Noise Reduction
+        <span className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/70 mb-4">
+          <Sparkles size={14} className="text-[#FF8C32]" /> Advanced Noise Reduction Intelligence®
         </span>
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black leading-[1.05] text-white">
           Silence engineered.
@@ -82,7 +88,7 @@ function Hero() {
 
 function Pill({ icon: Icon, title, desc }) {
   return (
-    <div className="group relative rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition">
+    <div className="group relative rounded-xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition shadow-[0_0_0_1px_rgba(255,106,0,0.06)_inset]">
       <div className="flex items-start gap-4">
         <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#FF6A00] to-[#FF8C32] grid place-items-center text-black">
           <Icon size={20} />
@@ -92,6 +98,7 @@ function Pill({ icon: Icon, title, desc }) {
           <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
         </div>
       </div>
+      <div className="absolute -inset-px rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition" style={{ boxShadow: '0 0 40px rgba(255,106,0,0.08) inset' }} />
     </div>
   )
 }
@@ -129,7 +136,7 @@ function Industries() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white">Built for demanding industries</h2>
           <div className="hidden md:block text-white/60 text-sm">Proven in market</div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8">
             <div className="flex items-center gap-3 mb-3">
               <Car className="text-[#FF6A00]" />
@@ -143,6 +150,13 @@ function Industries() {
               <h3 className="text-white font-semibold">Video Conference</h3>
             </div>
             <p className="text-white/70">Deliver studio-grade clarity for UCaaS and collaboration suites. Seamless integration with SDKs and accelerated inference on modern hardware.</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-8">
+            <div className="flex items-center gap-3 mb-3">
+              <CpuIcon className="text-[#FF6A00]" />
+              <h3 className="text-white font-semibold">Embedded SDKs</h3>
+            </div>
+            <p className="text-white/70">Production-ready libraries for ARM, DSPs, and NPUs with deterministic latency, low memory footprint, and reference integrations.</p>
           </div>
         </div>
       </div>
